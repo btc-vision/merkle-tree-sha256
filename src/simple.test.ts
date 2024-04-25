@@ -1,14 +1,14 @@
 import { test, testProp, fc } from '@fast-check/ava';
 import { HashZero as zero } from '@ethersproject/constants';
-import { keccak256 } from '@ethersproject/keccak256';
 import { SimpleMerkleTree } from './simple';
 import { BytesLike, HexString, concat, compare, toHex } from './bytes';
 import { InvalidArgumentError, InvariantError } from './utils/errors';
+import { sha256 } from "./sha256";
 
 fc.configureGlobal({ numRuns: process.env.CI ? 5000 : 100 });
 
-const reverseNodeHash = (a: BytesLike, b: BytesLike): HexString => keccak256(concat([a, b].sort(compare).reverse()));
-const otherNodeHash = (a: BytesLike, b: BytesLike): HexString => keccak256(reverseNodeHash(a, b)); // double hash
+const reverseNodeHash = (a: BytesLike, b: BytesLike): HexString => sha256(concat([a, b].sort(compare).reverse()));
+const otherNodeHash = (a: BytesLike, b: BytesLike): HexString => sha256(reverseNodeHash(a, b)); // double hash
 
 // Use a mix of uint8array and hexstring to cover the Byteslike space
 const leaf = fc
