@@ -2,7 +2,6 @@
   "name": "@openzeppelin/merkle-tree",
   "version": "1.0.6",
   "description": "Utilities to work with merkle trees",
-  "repository": "github:OpenZeppelin/merkle-tree",
   "main": "dist/index.js",
   "scripts": {
     "prepublishOnly": "npm run clean",
@@ -13,6 +12,7 @@
     "lint": "eslint . --ignore-path .gitignore --max-warnings 0",
     "lint:fix": "eslint . --ignore-path .gitignore --max-warnings 0 --fix",
     "test": "ava",
+	"updateTest": "ava --update-snapshots",
     "test:watch": "ava -w",
     "test:coverage": "c8 npm run test --"
   },
